@@ -10,8 +10,6 @@ import java.util.UUID;
 @Repository
 public interface AdminRepository extends JpaRepository<Admin, Long> {
 
-
-
     @Query("select case when count(c) > 0 then true else false end" +
             " from Admin c where c.authInfo.email = ?1")
     boolean existsByEmail(String email);

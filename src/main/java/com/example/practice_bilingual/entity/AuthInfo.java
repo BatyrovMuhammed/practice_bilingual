@@ -1,14 +1,18 @@
 package com.example.practice_bilingual.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
+import static javax.persistence.CascadeType.ALL;
 
 @Entity
 @Table(name = "authInfo")
@@ -26,7 +30,7 @@ public class AuthInfo implements UserDetails {
     private boolean isCredentialsNonExpired = true;
     private boolean isEnabled = true;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = ALL)
     @JoinTable(name = "authInfo_roles",
             joinColumns = @JoinColumn(name = "authInfo_id"),
             inverseJoinColumns = @JoinColumn(name = "roles_id"))
@@ -44,10 +48,11 @@ public class AuthInfo implements UserDetails {
     }
 
 
-    public void setRole1(Role roless) {
+    public void setAuthInfo1(Role role) {
         if (roles == null) {
             roles = new ArrayList<>();
         }
-        roles.add(roless);
+        roles.add(role);
+        role.setAuthInfo1(this);
     }
 }

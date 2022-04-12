@@ -1,10 +1,7 @@
 package com.example.practice_bilingual.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
@@ -36,7 +33,6 @@ public class Role implements GrantedAuthority {
             authInfo = new ArrayList<>();
         }
         authInfo.add(authInfos);
-        authInfos.setRole1(this);
     }
 
     @Override

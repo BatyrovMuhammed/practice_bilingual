@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 import static javax.persistence.CascadeType.ALL;
 
@@ -16,11 +15,10 @@ import static javax.persistence.CascadeType.ALL;
 @NoArgsConstructor
 public class Client {
 
-    @SequenceGenerator(name = "student_sequence",
-            sequenceName = "student_seq",
-            allocationSize = 1)
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "student_sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "client_sequence")
+    @SequenceGenerator(name = "client_sequence", sequenceName = "client_seq", allocationSize = 1)
     private Long id;
     private String name;
     private String email;

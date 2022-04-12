@@ -11,7 +11,7 @@ import javax.validation.constraints.Email;
 public class AdminRequest {
 
     @NotNull
-    private String name;
+    private String adminName;
 
     @Email
     private String email;

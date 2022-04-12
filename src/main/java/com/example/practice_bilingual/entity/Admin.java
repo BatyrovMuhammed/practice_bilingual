@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 import static javax.persistence.CascadeType.ALL;
 
@@ -16,21 +15,20 @@ import static javax.persistence.CascadeType.ALL;
 @NoArgsConstructor
 public class Admin {
 
-    @SequenceGenerator(name = "student_sequence",
-            sequenceName = "student_seq",
-            allocationSize = 1)
+
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "admin_sequence")
+    @SequenceGenerator(name = "admin_sequence", sequenceName = "admin_seq", allocationSize = 1)
     private Long id;
-    private String name;
+    private String adminName;
     private String email;
     private String password;
 
     @OneToOne(cascade = ALL)
     private AuthInfo authInfo;
 
-    public Admin(String name, String email, String password, AuthInfo authInfo) {
-        this.name = name;
+    public Admin(String adminName, String email, String password, AuthInfo authInfo) {
+        this.adminName = adminName;
         this.email = email;
         this.password = password;
         this.authInfo = authInfo;
